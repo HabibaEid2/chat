@@ -1,7 +1,7 @@
 /* the whole page */
 
 .welcome {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     min-height: 100vh;
@@ -15,9 +15,9 @@
 .welcome .welcome-content {
     max-width: 390px;
     background-color: white;
-    padding: 34px;
+    padding: 20px;
     border-left: solid 7px #7686db;
-    margin: 20px;
+    margin: 10px;
     border-radius: 69px;
     -webkit-border-radius: 69px;
     -moz-border-radius: 69px;
@@ -25,7 +25,7 @@
     -o-border-radius: 69px;
 }
 .welcome .img img {
-    width: 295px;
+    max-width: 295px;
     margin: auto;
     display: block;
 }

@@ -10,8 +10,8 @@ export default function CropImage({imgUrl}) {
         unit : "px" , 
         x : "0" , 
         y : "0" , 
-        width : "100" , 
-        height : "100"
+        width : '0' , 
+        width : '0'
     }) ; 
 
     // Ref Hook
@@ -58,7 +58,7 @@ export default function CropImage({imgUrl}) {
         <div className="crop-img">
 
             <ReactCrop keepSelection onComplete={getTheImgFromCanvas} aspect={1} circularCrop crop={crop} onChange={e => setCrop(e)}>
-                <img className="selected" ref={img} src={imgUrl} alt="" />
+                <img className="selected" ref={img} src={imgUrl} alt="user image" />
             </ReactCrop>
 
             <canvas width={300} height={300} hidden ref={canvas}>

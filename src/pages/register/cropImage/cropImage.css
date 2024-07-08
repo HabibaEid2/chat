@@ -12,7 +12,23 @@
     margin: auto;
     left: 50%;
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.crop-img > div > div {
+    margin: 20px;
+    height: 76vh;
 }
 .crop-img img {
-    width: 70%;
+    object-fit: contain;
+    border-radius: 0;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    -ms-border-radius:0;
+    -o-border-radius:0;
+}
+.crop-img button {
+    margin: 0 auto;
 }
