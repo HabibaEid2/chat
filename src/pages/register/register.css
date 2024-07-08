@@ -6,7 +6,7 @@
 }
 .register {
     font-family: cursive;
-    width: 90%;
+    max-width: 600px;
     margin: 30px 0;
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -46,6 +46,7 @@
     font-weight: bold;
 }
 .register input {
+    width: 100%;
     padding: 10px;
     border: solid 2px #5c7582;
     transition: .3s;
@@ -111,6 +112,7 @@
     left: 105%;
 }
 .register .having-account {
+    text-align: center;
     width: fit-content;
     color: #939393;
     margin: 20px auto !important;
@@ -124,5 +126,6 @@
 @media (max-width : 767px) {
     .register {
         grid-template-columns: 1fr;
+        max-width: 400px;
     }
 }

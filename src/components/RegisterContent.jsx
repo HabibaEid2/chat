@@ -7,24 +7,31 @@ import Error from '../pages/register/error/Error';
 import WelcomPage from "../pages/register/welcomePage/WelcomePage";
 
 export default function RegisterContent(props) {
+
     let [userName , setUserName] = useState("") ; 
     let [pass , setPass] = useState("") ; 
     let [email , setEmail] = useState("") ; 
-    let [looping , setLoop] = useState(false) ; 
-    let [error , setError] = useState({left : "-45%" , type : ""}) ; 
-    let [showGreeting , setShowGreeting] = useState(true) ; 
 
+    // to show loading icon through submitting the data
+    let [loading , setLoading] = useState(false) ; 
+
+    let [error , setError] = useState({left : "-45%" , type : ""}) ; 
     let go = useNavigate() ; 
+
+    // submit data after register
+
     async function submit(e) {
         e.preventDefault() ; 
+
         // check content 
-        if ((userName.length <= 0 && props.type === "register") || pass.length <= 0) {
+
+        if ((userName.length === 0 && props.type === "register") || pass.length === 0) {
             setError({left : "0" , type : 
                 userName.length <=0 ? "nameError" : "passError"
             })
         }
         else {
-            setLoop(true) ; 
+            setLoading(true) ; 
             await axios.post(`${api}/${props.type === "sign-in" ? "login" : "register"}` , {
                 name : userName , 
                 password : pass , 
@@ -32,13 +39,13 @@ export default function RegisterContent(props) {
                 email : email 
             })
             
-            .then(res => {
-                setLoop(false) ; 
+            .then( () => {
+                setLoading(false) ; 
                 go("/main-chats")
             })
 
             .catch(err => {
-                setLoop(false)
+                setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
                 setError({left : "0" , type : getErr}) ; 
                 console.log(getErr)
@@ -81,7 +88,7 @@ export default function RegisterContent(props) {
                 </div>
 
                 <button onClick={submit}><span>
-                    {looping ? 
+                    {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner> : props.type === "sign-in" ? "Sign in" : "Register"}
@@ -95,7 +102,7 @@ export default function RegisterContent(props) {
                     }
                 </div>
             </form>
-            {/* <WelcomPage name = {userName}/> */}
+            <WelcomPage name = {userName}/>
         </div>
     )
 }

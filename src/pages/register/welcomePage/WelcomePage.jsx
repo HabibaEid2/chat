@@ -32,7 +32,7 @@ export default function WelcomPage(props) {
     }
 
     return (
-        <div className="welcome-page">
+        <div className="welcome">
             <div  className="welcome-content">
                 <div className="txt">
                     Hello <span className='userName'>{props.name || "Habiba"} </span> 
