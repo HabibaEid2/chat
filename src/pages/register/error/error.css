@@ -1,0 +1,21 @@
+.register .warning {
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    background-color: #37474f;
+    color: white;
+    transition: .5s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+}
+.register .warning::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #dd636e;
+}

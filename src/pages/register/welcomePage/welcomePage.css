@@ -1,0 +1,86 @@
+/* the whole page */
+
+.welcome-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #454343ba;
+    z-index: 2;
+}
+.welcome-page .welcome-content {
+    max-width: 390px;
+    background-color: white;
+    padding: 34px;
+    border-left: solid 7px #7686db;
+    margin: 20px;
+    border-radius: 69px;
+    -webkit-border-radius: 69px;
+    -moz-border-radius: 69px;
+    -ms-border-radius: 69px;
+    -o-border-radius: 69px;
+}
+.welcome-content .img img {
+    width: 295px;
+    margin: auto;
+    display: block;
+}
+.welcome-content .txt {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: #4658aa;
+}
+.welcome-content .txt span.userName {
+    color: #455a64;
+    font-size: 30px;
+}
+.welcome-content .txt span.thanks {
+    font-size: 30px;
+    color: #da70b4 ;
+}
+.welcome-content button.add-photo {
+    margin-top: -43px;
+}
+.welcome-content .user-img {
+    position: relative;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    border: solid 3px black;
+    display: block;
+    margin: 20px auto;
+    object-fit: contain;
+    cursor: pointer;
+    overflow: hidden;
+}
+.welcome-content .user-img::after {
+    content: '\2b';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    -webkit-transform: translate(-50% , -50%);
+    -moz-transform: translate(-50% , -50%);
+    -ms-transform: translate(-50% , -50%);
+    -o-transform: translate(-50% , -50%);
+    background-color: #37474fb3;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 73px;
+    color: white;
+}
+.welcome-content .user-img:hover::after {
+    display: flex;
+}
+.welcome-content .user-img img {
+    object-fit: contain;
+    background-color: #cdcccc;
+}

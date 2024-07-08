@@ -1,0 +1,18 @@
+.crop-img {
+    background-color: #212121;
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.crop-img > div {
+    width: fit-content;
+    position: relative;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.crop-img img {
+    width: 70%;
+}
