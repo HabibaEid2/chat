@@ -28,7 +28,6 @@ export default function WelcomPage(props) {
         context.setValue(prev => {
             return {...prev , open_editor_section : true}
         }) ; 
-        console.log("yes select the image")
     }
 
     return (
