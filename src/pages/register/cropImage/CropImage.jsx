@@ -52,16 +52,8 @@ export default function CropImage({imgUrl}) {
         context.setValue(prev => {
             return {...prev , open_editor_section : false}}
         )
-
-        console.log("*** image coordinates ***") ; 
-        console.log("width : " , img.current.width) ; 
-        console.log("height : " , img.current.height)
     }
-    console.log("*** crop coordinates ***")
-    console.log("crop x : " , crop.x) ; 
-    console.log("crop y : " , crop.y) ; 
-    console.log("width : " , crop.width) ; 
-    console.log("height : " , crop.height) ; 
+    
     return (
         <div className="crop-img">
 

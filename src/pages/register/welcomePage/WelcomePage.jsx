@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { useRef } from 'react';
 import CropImage from '../cropImage/CropImage';
 import { dataURLContext } from '../../../context/Context';
+import { useNavigate } from 'react-router-dom';
 
 export default function WelcomPage(props) { 
 
@@ -13,6 +14,7 @@ export default function WelcomPage(props) {
     let inputFile = useRef("") ; 
 
     let context = useContext(dataURLContext) ; 
+    let go = useNavigate() ; 
 
     // click on image to simulate clicking on input 
 
@@ -30,6 +32,11 @@ export default function WelcomPage(props) {
         }) ; 
     }
 
+    // go to chats after put the photo
+
+    function goToChats() {
+        go("/main-chats")
+    }
     return (
         <div className="welcome">
             <div  className="welcome-content">
@@ -54,7 +61,7 @@ export default function WelcomPage(props) {
 
                         <input onChange={readUrl} ref={inputFile} id='get' type="file" hidden/>
 
-                        <button className="goToChats">continue</button>
+                        <button onClick={goToChats} className="goToChats">continue</button>
                     </div>
                     }
                 </div>

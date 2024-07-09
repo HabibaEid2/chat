@@ -1,22 +1,24 @@
 import axios from "axios"
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react"
+import { Link } from "react-router-dom";
 import {api} from "../api/Api";
 import { Spinner } from "react-bootstrap";
 import Error from '../pages/register/error/Error';
 import WelcomPage from "../pages/register/welcomePage/WelcomePage";
+import { dataURLContext } from "../context/Context";
 
 export default function RegisterContent(props) {
 
     let [userName , setUserName] = useState("") ; 
     let [pass , setPass] = useState("") ; 
     let [email , setEmail] = useState("") ; 
+    let context = useContext(dataURLContext)
 
     // to show loading icon through submitting the data
     let [loading , setLoading] = useState(false) ; 
 
     let [error , setError] = useState({left : "-45%" , type : ""}) ; 
-    let go = useNavigate() ; 
+    let [showGreeting , setShowGreeting] = useState(false)
 
     // submit data after register
 
@@ -32,23 +34,24 @@ export default function RegisterContent(props) {
         }
         else {
             setLoading(true) ; 
-            await axios.post(`${api}/${props.type === "sign-in" ? "login" : "register"}` , {
+            await axios.post(`${api}/${props.type === "sign-in" ? "login" : "v1/register"}` , {
                 name : userName , 
+                email : email , 
                 password : pass , 
-                password_confirmation : pass , 
-                email : email 
+                profile_pic : context.value.img
             })
             
-            .then( () => {
+            .then( (res) => {
                 setLoading(false) ; 
-                go("/main-chats")
+                console.log(res)
+                setShowGreeting(true) ; 
             })
 
             .catch(err => {
+                console.log(err)
                 setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
                 setError({left : "0" , type : getErr}) ; 
-                console.log(getErr)
             })
         }
     }
@@ -102,7 +105,7 @@ export default function RegisterContent(props) {
                     }
                 </div>
             </form>
-            <WelcomPage name = {userName}/>
+            {showGreeting && <WelcomPage name = {userName}/>}
         </div>
     )
 }

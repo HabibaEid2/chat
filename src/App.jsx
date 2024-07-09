@@ -1,5 +1,6 @@
 import 'react-image-crop/dist/ReactCrop.css'
 import './constant/css/bootstrap.min.css'
+import './constant/css/all.min.css'
 import './App.css'
 import Register from './pages/register/Register'
 import { Route, Routes } from 'react-router-dom'
