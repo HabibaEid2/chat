@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import userImg from './../../assets/default-user-img.png' ; 
-import './mainChats.css'
+import './chats.css'
 import { useEffect } from 'react';
+import axios from 'axios';
+import { api } from '../../api/Api';
+import { dataURLContext } from '../../context/Context';
 export default function MainChats() {
 
     let [chats , setChats] = useState([]) ; 
+    let context = useContext(dataURLContext)
 
+    useEffect(() => {
+        axios.get(`${api}/v1/user-details` , {
+            headers : {
+                Authorization : "token" + context.value.token , 
+            }
+        }).then((res) => {
+            console.log(res)
+        })
+    })
+    
     let chatContent = [
         {
             imgUrl : userImg , 

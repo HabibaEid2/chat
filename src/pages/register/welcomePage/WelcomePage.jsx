@@ -41,8 +41,10 @@ export default function WelcomPage(props) {
         <div className="welcome">
             <div  className="welcome-content">
                 <div className="txt">
-                    Hello <span className='userName'>{props.name || "Habiba"} </span> 
-                    now you are a memeber of our family <span className='thanks'>thank you</span> for register
+                    Hello <span className='userName'>{props.name || "Habiba"} </span>
+                    {props.type === "login" ?
+                    "we are happy to see you again" :
+                    `now you are a memeber of our family ${<span className='thanks'>thank you</span>} for register`} 
                 </div>
 
                 <div className="img-section">

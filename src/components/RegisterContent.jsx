@@ -34,21 +34,26 @@ export default function RegisterContent(props) {
         }
         else {
             setLoading(true) ; 
-            await axios.post(`${api}/${props.type === "sign-in" ? "login" : "v1/register"}` , {
-                name : userName , 
-                email : email , 
-                password : pass , 
-                profile_pic : context.value.img
-            })
-            
+            await axios.post(`${api}/${props.type === "login" ? "v1/login" : "v1/register"}` , 
+                props.type === "login" ? {
+                    name : userName , 
+                    email : email , 
+                    password : pass , 
+                    profile_pic : context.value.img
+                } : {
+                    email : email , 
+                    password : pass , 
+                }
+            )
             .then( (res) => {
                 setLoading(false) ; 
-                console.log(res)
                 setShowGreeting(true) ; 
+                context.setValue(prev => {
+                    return {...prev , token : res.data.token}
+                })
             })
 
             .catch(err => {
-                console.log(err)
                 setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
                 setError({left : "0" , type : getErr}) ; 
@@ -105,7 +110,7 @@ export default function RegisterContent(props) {
                     }
                 </div>
             </form>
-            {showGreeting && <WelcomPage name = {userName}/>}
+            {showGreeting && <WelcomPage type = {props.type} name = {userName}/>}
         </div>
     )
 }
