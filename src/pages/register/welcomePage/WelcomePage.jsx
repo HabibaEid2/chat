@@ -35,7 +35,7 @@ export default function WelcomPage(props) {
     // go to chats after put the photo
 
     function goToChats() {
-        go("/main-chats")
+        go("/main-page")
     }
     return (
         <div className="welcome">

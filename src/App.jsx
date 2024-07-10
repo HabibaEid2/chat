@@ -4,7 +4,10 @@ import './constant/css/all.min.css'
 import './App.css'
 import Register from './pages/register/Register'
 import { Route, Routes } from 'react-router-dom'
-import MainChats from './pages/mainChats/Chats'
+import Chats from './pages/mainPage/chats/Chats'
+import MainPage from './pages/mainPage/MainPage'
+import Status from './pages/mainPage/status/Status'
+import Calls from './pages/mainPage/calls/Calls'
 
 function App() {
   return (
@@ -13,7 +16,11 @@ function App() {
       <Route element = {<Register type = "login"/>} path='/'/>
       <Route element = {<Register type = "login"/>} path='/login'/>
       <Route element = {<Register type = "register"/>} path='/register'/>
-      <Route element = {<MainChats/>} path='/main-chats'/>
+      <Route element = {<MainPage/>} path='/main-page'>
+        <Route element = {<Chats/>} path='chats'/>
+        <Route element = {<Status/>} path='status'/>
+        <Route element = {<Calls/>} path='calls'/>
+      </Route>
     </Routes>
     </>
 

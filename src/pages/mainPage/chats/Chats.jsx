@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
-import userImg from './../../assets/default-user-img.png' ; 
+import userImg from './../../../assets/default-user-img.png'
 import './chats.css'
 import { useEffect } from 'react';
 import axios from 'axios';
-import { api } from '../../api/Api';
-import { dataURLContext } from '../../context/Context';
+import { api } from '../../../api/Api';
+import { dataURLContext } from '../../../context/Context';
 export default function MainChats() {
 
     let [chats , setChats] = useState([]) ; 
@@ -61,7 +61,7 @@ export default function MainChats() {
         }
     } , [])
     return (
-        <div className="main-chats">
+        <div className="page chats">
             <div className="dashboard">
                 <div className="head">
                     <h4>Messages</h4>
@@ -78,7 +78,7 @@ export default function MainChats() {
                     <input type="text" id = "search" placeholder='Type your search'/>
                 </div>
 
-                <div className="chats">
+                <div className="chats-list">
                     <ul>
                         {chats}
                     </ul>
