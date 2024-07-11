@@ -21,6 +21,7 @@ function App() {
       <Route element = {<Register type = "register"/>} path='/register'/>
       <Route element = {<MainPage/>} path='/main-page'>
         <Route element = {<Chats/>} path='chats'/>
+        <Route element = {<Chats/>} path='chats'/>
         <Route element = {<Status/>} path='status'/>
         <Route element = {<Calls/>} path='calls'/>
       </Route>

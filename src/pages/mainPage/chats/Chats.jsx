@@ -1,92 +1,63 @@
-import { useContext, useState } from 'react';
-import userImg from './../../../assets/default-user-img.png'
 import './chats.css'
-import { useEffect } from 'react';
-import axios from 'axios';
-import { api } from '../../../api/Api';
-import { dataURLContext } from '../../../context/Context';
-export default function MainChats() {
 
+import { useEffect, useState } from "react"
+import img from './../../../assets/default-user-img.png'
+
+export default function Chats() {
     let [chats , setChats] = useState([]) ; 
-    let context = useContext(dataURLContext)
-
-    useEffect(() => {
-        axios.get(`${api}/v1/user-details` , {
-            headers : {
-                Authorization : "token" + context.value.token , 
-            }
-        }).then((res) => {
-            console.log(res)
-        })
-    })
-    
-    let chatContent = [
+    let list = [
         {
-            imgUrl : userImg , 
-            name : "sara emad" , 
-            last_ms : "how are you ?" , 
-            missed_mss : 1 , 
+            img : img , 
+            name : "sara adel" , 
+            last_ms : "How are you Habiba ?"  , 
         } , 
         {
-            imgUrl : userImg , 
-            name : "Ahmad Adel" , 
-            last_ms : "how's going yesterday ?!" , 
-            missed_mss : 2 , 
+            img : img , 
+            name : "Ahmad" , 
+            last_ms : "what's going habiba?"  , 
         } , 
         {
-            imgUrl : userImg , 
-            name : "Lana" , 
-            last_ms : "she told me that you are boring ! but don't care i told here to shut up her mouse" , 
-            missed_mss : 20 , 
+            img : img , 
+            name : "Haboba" , 
+            last_ms : "sure ! as you like"  , 
+        } , 
+        {
+            img : img , 
+            name : "Mina Raoof" , 
+            last_ms : "ofcurse noh!!"  , 
         }
     ]
 
     useEffect(() => {
-        setChats([])
-        for(let i of chatContent) {
-            setChats(prev => [...prev , 
-                <li>
-                    <div className="chat">
-                        <div className="image">
-                            <img src={i.imgUrl} alt="" />
-                        </div>
-                        <div className="txt">
-                            <div className="name">{i.name}</div>
-                            <div className="last-message">{i.last_ms.length >= 17 ? `${i.last_ms.slice(0 , 18)}...` : i.last_ms }</div>
-                        </div>
-                        <div className="missed-mss">{i.missed_mss}</div>
-                    </div>
-                </li>
+        for(let i of list) {
+            setChats([...chats , 
+                <li key={list.indexOf(i)}>
+                <div className="img">
+                    <img src={i.img} alt="" />
+                </div>
+                <div className="txt">
+                    .head
+                </div>
+            </li>
             ])
         }
     } , [])
     return (
-        <div className="page chats">
+        <div className="chats">
             <div className="dashboard">
-                <div className="head">
-                    <h4>Messages</h4>
-                    <div className="profile-icon">
-                        <img src={userImg} alt="" />
-                    </div>
-                </div>
-
-                {/* search bar */}
-                <div className="search-bar">
+            <header>
+                <h6>Chats</h6>
+                <div className="search">
                     <label htmlFor="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </label>
-                    <input type="text" id = "search" placeholder='Type your search'/>
+                    <input id="search" type="text" />
                 </div>
+            </header>
 
-                <div className="chats-list">
-                    <ul>
-                        {chats}
-                    </ul>
-                </div>
-            </div>
-
-            <div className="selected-chat">
-                Here is the selected chat
+            <ul className="chats-list">
+                {chats}
+            </ul>
             </div>
         </div>
     )
