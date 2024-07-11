@@ -8,8 +8,11 @@ import Chats from './pages/mainPage/chats/Chats'
 import MainPage from './pages/mainPage/MainPage'
 import Status from './pages/mainPage/status/Status'
 import Calls from './pages/mainPage/calls/Calls'
+import { io } from 'socket.io-client'
 
 function App() {
+  // const socket = io("", { transport: ['websocket', 'polling', 'flashsocket'] });
+
   return (
     <>
     <Routes>
