@@ -1,5 +1,8 @@
+.main-page {
+    display: flex;
+}
 .main-page ul.main-list {
-    background-color: #01766b;
+    background-color: var(--main-color);
     color: white;
     width: fit-content;
     height: 100vh;
@@ -17,15 +20,6 @@
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
-}
-.main-page ul.main-list img {
-    background-color: white;
-    width: 29px;
-    border-radius:50% ;
-    -webkit-border-radius:50% ;
-    -moz-border-radius:50% ;
-    -ms-border-radius:50% ;
-    -o-border-radius:50% ;
 }
 .main-page ul.main-list .status a {
     display: flex;
@@ -50,4 +44,33 @@
     height: 100%;
     display: flex;
     align-items: flex-end;
+    position: relative;
+}
+.main-page .setting .setting-content {
+    position: absolute;
+    bottom: 3px;
+    left: 31px;
+    z-index: 1;
+    width: 192px;
+    background-color: #3f3f3f;
+    border-radius: 2px;
+    padding: 6px;
+}
+.main-page .setting .bg-list {
+    position: relative;
+}
+.main-page .setting .bg-list::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+.main-page .setting .bg-list img {
+    height: 38px;
+    width: 30px;
+    border-radius: 2px;
+    margin: 3px;
 }

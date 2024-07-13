@@ -3,11 +3,11 @@ import './registerContent.css' ;
 import axios from "axios"
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom";
-import {api} from "../../api/Api";
+import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
-import Error from '../../pages/register/error/Error';
-import WelcomPage from "../../pages/register/welcomePage/WelcomePage";
-import { dataURLContext } from "../../context/Context";
+import Error from '../error/Error';
+import WelcomPage from "../welcomePage/WelcomePage";
+import { dataURLContext } from "../../../context/Context";
 
 export default function RegisterContent(props) {
 

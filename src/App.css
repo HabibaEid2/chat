@@ -1,5 +1,6 @@
 :root {
-    --main-color : #009688 ; 
+    /* --main-color : #009688 ;  */
+    --main-color : #00569f ; 
 }
 * {
     margin: 0;
@@ -14,4 +15,13 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+img {
+    width: 32px;
+    background-color: white;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }

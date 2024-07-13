@@ -1,8 +1,8 @@
 import './register.css'
-import RegisterContent from '../../components/registerContent/RegisterContent'
-import img from './../../assets/Chat.gif'
-import bg from './../../assets/background.mp4'
-import register_v from './../../assets/register-v.mp4'
+
+import RegisterContent from './../registerContent/RegisterContent'
+import bg from './../../../assets/background.mp4'
+import register_v from './../../../assets/register-v.mp4'
 export default function Register(props) {
     return (
         <div className="register-whole-page">
