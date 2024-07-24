@@ -1,6 +1,6 @@
 import './mainBar.css'
 import { Link, Outlet } from "react-router-dom";
-import { useContext} from 'react';
+import { useContext, useReducer, useRef, useState} from 'react';
 import {dataURLContext} from '../../context/Context'
 
 // background images
@@ -20,11 +20,17 @@ import bg12 from './../../assets/bg12.jpg'
 import bg13 from './../../assets/bg13.jpg'
 
 export default function MainPage() {
+    // let [bgImg , setBgImg] = useState()
+    let [openSetting , setOpenSetting] = useState(false) ; 
+    let setting_content = useRef() ; 
     let context = useContext(dataURLContext)  ; 
 
-    function changeSetting() {
-
+    function changeChatBg(e) {
+        context.setValue((prev) => {
+            return {...prev , chatBgImg : e.target.src}
+        })
     }
+    
     return (
         <div className="main-page">
             <ul className='main-list'>
@@ -54,28 +60,32 @@ export default function MainPage() {
                     </Link>
                 </li>
 
-                <li onClick={changeSetting} title='setting' className='setting'>
-                    <i className="fa-solid fa-gear"></i>
+                <li title='setting' className='setting'>
+                    <i onClick={() => setOpenSetting(!openSetting)} className="fa-solid fa-gear"></i>
 
-                    <div className="setting-content">
+                    <div 
+                    ref={setting_content}
+                    className="setting-content"
+                    style = {{opacity : openSetting ? "1" : "0"}}
+                    >
                         <h5>background</h5>
 
                         <div className="bg-list">
                             <div>
-                                <img src={default_bg} alt="" />
-                                <img src={bg1} alt="" />
-                                <img src={bg2} alt="" />
-                                <img src={bg3} alt="" />
-                                <img src={bg4} alt="" />
-                                <img src={bg5} alt="" />
-                                <img src={bg6} alt="" />
-                                <img src={bg7} alt="" />
-                                <img src={bg8} alt="" />
-                                <img src={bg9} alt="" />
-                                <img src={bg10} alt="" />
-                                <img src={bg11} alt="" />
-                                <img src={bg12} alt="" />
-                                <img src={bg13} alt="" />
+                                <img onClick = {changeChatBg} src={default_bg} alt="" />
+                                <img onClick = {changeChatBg} src={bg1} alt="" />
+                                <img onClick = {changeChatBg} src={bg2} alt="" />
+                                <img onClick = {changeChatBg} src={bg3} alt="" />
+                                <img onClick = {changeChatBg} src={bg4} alt="" />
+                                <img onClick = {changeChatBg} src={bg5} alt="" />
+                                <img onClick = {changeChatBg} src={bg6} alt="" />
+                                <img onClick = {changeChatBg} src={bg7} alt="" />
+                                <img onClick = {changeChatBg} src={bg8} alt="" />
+                                <img onClick = {changeChatBg} src={bg9} alt="" />
+                                <img onClick = {changeChatBg} src={bg10} alt="" />
+                                <img onClick = {changeChatBg} src={bg11} alt="" />
+                                <img onClick = {changeChatBg} src={bg12} alt="" />
+                                <img onClick = {changeChatBg} src={bg13} alt="" />
                             </div>
                         </div>
                     </div>

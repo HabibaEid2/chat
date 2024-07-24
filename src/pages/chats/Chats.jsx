@@ -1,13 +1,18 @@
 import './chats.css'
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import img from './../../assets/default-user-img.png'
-import { io } from 'socket.io-client';
 
-export default function Chats() {
+import { io } from 'socket.io-client';
+import { dataURLContext } from '../../context/Context';
+
+export default function Chats(props) {
     let socket = io.connect("http://localhost:3000" , { transports: ['websocket', 'polling', 'flashsocket'] })
     let [chats , setChats] = useState([]) ; 
-    let [openDB , setOpenDB] = useState(true) ; 
+    let [openDB , setOpenDB] = useState(true) ; // open dashboard
+
+    let context = useContext(dataURLContext) ; 
+
     let list = [
         {
             img : img , 
@@ -73,7 +78,7 @@ export default function Chats() {
             {/* end dashboard */}
 
             {/* start single-chat */}
-            <div className="chat">
+            <div style={{backgroundImage : `url(${context.value.chatBgImg})`}} className="chat">
 
                 {/* to close the dashboard */}
                 <button 

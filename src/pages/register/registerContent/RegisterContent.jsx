@@ -1,26 +1,32 @@
 import './registerContent.css' ; 
 
 import axios from "axios"
-import { useContext, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
 import Error from '../error/Error';
-import WelcomPage from "../welcomePage/WelcomePage";
+import defaultUserImg from './../../../assets/default-user-img.png'
+import CropImage from './../cropImage/CropImage'
 import { dataURLContext } from "../../../context/Context";
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterContent(props) {
 
     let [userName , setUserName] = useState("") ; 
     let [pass , setPass] = useState("") ; 
     let [email , setEmail] = useState("") ; 
-    let context = useContext(dataURLContext)
+    let [imgUrl , setImgUrl] = useState(defaultUserImg)
+    let userImg = useRef();
+    let inputFile = useRef(); 
+    let context = useContext(dataURLContext) ; 
+    let go = useNavigate() ; 
 
     // to show loading icon through submitting the data
     let [loading , setLoading] = useState(false) ; 
 
     let [error , setError] = useState({left : "-115%" , type : ""}) ; 
-    let [showGreeting , setShowGreeting] = useState(false)
+    // let [showGreeting , setShowGreeting] = useState(false)
 
     // submit data after register
 
@@ -49,7 +55,7 @@ export default function RegisterContent(props) {
             )
             .then( (res) => {
                 setLoading(false) ; 
-                setShowGreeting(true) ; 
+                go("main/chat")
                 context.setValue(prev => {
                     return {...prev , token : res.data.token}
                 })
@@ -63,6 +69,15 @@ export default function RegisterContent(props) {
         }
     }
 
+    // function to read the image url from the file that user open
+    function readUrl() {
+        let url = URL.createObjectURL(inputFile.current.files[0]) ; 
+        setImgUrl(url) ; 
+        context.setValue(prev => {
+            return {...prev , open_editor_section : true}
+        }) ; 
+    }
+
     return (
         <div className="register-content">
             <div className='warning' style={{left : error.left}} onClick={() => setError({...error , left : "-115%"})}>
@@ -70,14 +85,33 @@ export default function RegisterContent(props) {
             </div>
             <form>
                 {props.type === "register" && 
-                <div className="form-field">
-                    <label htmlFor="name">Name</label>
-                    <input type="text"
-                    id = "name"
-                    placeholder="user name"
-                    onChange={(e) => setUserName(e.target.value)}
-                    />
-                </div>
+                <>
+                    <div className="form-field img">
+                        <input 
+                            hidden 
+                            type="file" 
+                            onChange={readUrl}
+                            ref = {inputFile}
+                            />
+                        <img 
+                            src={context.value.img} 
+                            alt="user image" 
+                            ref = {userImg}
+                            onClick = {() => {
+                                inputFile.current.click()
+                            }}
+                            />
+                    </div>
+
+                    <div className="form-field">
+                        <label htmlFor="name">Name</label>
+                        <input type="text"
+                        id = "name"
+                        placeholder="user name"
+                        onChange={(e) => setUserName(e.target.value)}
+                        />
+                    </div>
+                </>
                 }
                 <div className="form-field">
                     <label htmlFor="email">Email</label>
@@ -97,7 +131,7 @@ export default function RegisterContent(props) {
                     />
                 </div>
 
-                <button onClick={submit}><span>
+                <button className = "submit" onClick={submit}><span>
                     {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -112,7 +146,7 @@ export default function RegisterContent(props) {
                     }
                 </div>
             </form>
-            {showGreeting && <WelcomPage type = {props.type} name = {userName}/>}
+            {context.value.open_editor_section && <CropImage imgUrl = {imgUrl}/>}
         </div>
     )
 }

@@ -6,6 +6,17 @@
 .register-content form {
     width: 100%;
 }
+.register-content form .form-field.img {
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+.register-content .form-field.img img {
+    width: 100px;
+    border: solid black;
+    outline: solid white;
+    cursor: pointer;
+}
 .register-content form .form-field{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -57,7 +68,6 @@
 }
 .register-content button span {
     position: relative;
-    z-index: 1;
 }
 .register-content button::after {
     content: "";

@@ -13,6 +13,7 @@ export default function Context({children}) {
         {
             img : defaultImg , 
             open_editor_section : false , 
+            chatBgImg : "" , 
             token : ""
         }) ; 
 

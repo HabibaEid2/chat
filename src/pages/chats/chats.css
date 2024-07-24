@@ -102,7 +102,7 @@
 /* start chat */
 .chats .chat {
     position: relative;
-    background-image: url(https://i.pinimg.com/474x/e3/d7/ae/e3d7aec4759569cf84e16f742c606bdc.jpg);
+    background-size: cover;
 }
 .chats .chat > button {
     position: absolute;
