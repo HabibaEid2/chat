@@ -1,28 +1,18 @@
-import { useContext, useRef, useState } from "react";
+import {useRef, useState } from "react";
 import ReactCrop from "react-image-crop";
-import { dataURLContext } from "../../../context/Context";
 import './cropImage.css'
 
 export default function CropImage({imgUrl}) {
-
-    // crop coordinates
-    let [crop , setCrop] = useState({
+    const [crop , setCrop] = useState({
         unit : "px" , 
         x : 50 , 
         y :50 , 
         width : 100 , 
         height : 100
     }) ; 
-
-    // Ref Hook
-    let canvas = useRef() ; 
-    let img = useRef() ; 
-
-    // context
-    let context = useContext(dataURLContext) ; 
-
+    const canvas = useRef() ; 
+    const img = useRef() ; 
     // get the url of edited image 
-
     function getTheImgFromCanvas() {
         let scaleX = img.current.naturalWidth / img.current.width ; 
         let scaleY = img.current.naturalHeight / img.current.height ; 
@@ -39,28 +29,17 @@ export default function CropImage({imgUrl}) {
             cWidth , 
             cHeight) ; 
 
-        let dataUrl = canvas.current.toDataURL("image/jpeg", 1.0) ; 
-
-        context.setValue(prev => {
-            return {...prev , img : dataUrl}
-        }) ; 
+        const dataUrl = canvas.current.toDataURL("image/jpeg", 1.0) ; 
     }
-
     // close editor sectoin
-
     function close() {
-        context.setValue(prev => {
-            return {...prev , open_editor_section : false}}
-        )
+        
     }
-    
     return (
         <div className="crop-img">
-
             <ReactCrop keepSelection onComplete={getTheImgFromCanvas} aspect={1} circularCrop crop={crop} onChange={e => setCrop(e)}>
                 <img className="selected" ref={img} src={imgUrl} alt="user image" />
             </ReactCrop>
-
             <canvas width={300} height={300} hidden ref={canvas}>
                 sorry ! your browser don't support canvas
             </canvas>

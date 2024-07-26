@@ -1,23 +1,9 @@
-import { createContext, useState } from "react";
-import defaultImg from './../assets/default-user-img.png' ; 
-import { Cookies } from "react-cookie";
+import { Children, createContext, useState } from "react";
 
-export const dataURLContext = createContext(null) ; 
-
+const context = createContext() ; 
 export default function Context({children}) {
-
-    //context to get the image url of user's photokop and the ability of show the Edited image or Editor page
-
-    const cookie = new Cookies() ; 
-    const [value , setValue] = useState(
-        {
-            img : defaultImg , 
-            open_editor_section : false , 
-            chatBgImg : "" , 
-            token : ""
-        }) ; 
-
-    return (
-        <dataURLContext.Provider value={{value , setValue}}>{children}</dataURLContext.Provider>
-    )
+    const {value , setValue} = useState({open_editor_section : false})
+    return <context.Provider value={{value , setValue}}>
+        {children}
+    </context.Provider>
 }

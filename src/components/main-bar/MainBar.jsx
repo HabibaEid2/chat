@@ -1,8 +1,6 @@
 import './mainBar.css'
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useReducer, useRef, useState} from 'react';
-import {dataURLContext} from '../../context/Context'
-
+import { useRef, useState} from 'react';
 // background images
 import default_bg from './../../assets/default-light-bg.jpg'
 import bg1 from './../../assets/bg1.jpg'
@@ -18,40 +16,36 @@ import bg10 from './../../assets/bg10.jpg'
 import bg11 from './../../assets/bg11.jpg'
 import bg12 from './../../assets/bg12.jpg'
 import bg13 from './../../assets/bg13.jpg'
+import { useSelector } from 'react-redux';
 
-export default function MainPage() {
+export default function MainBar() {
     // let [bgImg , setBgImg] = useState()
-    let [openSetting , setOpenSetting] = useState(false) ; 
-    let setting_content = useRef() ; 
-    let context = useContext(dataURLContext)  ; 
-
+    const [openSetting , setOpenSetting] = useState(false) ; 
+    const setting_content = useRef() ; 
+    const userData = useSelector(state => state.userData) ; 
     function changeChatBg(e) {
-        context.setValue((prev) => {
-            return {...prev , chatBgImg : e.target.src}
-        })
+        // context.setValue((prev) => {
+        //     return {...prev , chatBgImg : e.target.src}
+        // })
     }
-    
     return (
         <div className="main-page">
             <ul className='main-list'>
                 <li title='profile'>
                     <Link to = "profile">
-                        <img src={context.value.img} alt="profile" />
+                        <img src={userData.profile_pic} alt="profile" />
                     </Link>
                 </li>
-
                 <li title='chats'>
                     <Link to = "chats">
                         <i className="fa-regular fa-message"></i>
                     </Link>
                 </li>
-
                 <li title='calls'>
                     <Link to = "calls">
                         <i className="fa-solid fa-phone"></i>
                     </Link>
                 </li>
-
                 <li title='status' className='status'>
                     <Link to = "status">
                         <span></span>
@@ -59,17 +53,14 @@ export default function MainPage() {
                         <span></span>
                     </Link>
                 </li>
-
                 <li title='setting' className='setting'>
                     <i onClick={() => setOpenSetting(!openSetting)} className="fa-solid fa-gear"></i>
-
                     <div 
-                    ref={setting_content}
-                    className="setting-content"
-                    style = {{opacity : openSetting ? "1" : "0"}}
-                    >
+                        ref={setting_content}
+                        className="setting-content"
+                        style = {{opacity : openSetting ? "1" : "0"}}
+                        >
                         <h5>background</h5>
-
                         <div className="bg-list">
                             <div>
                                 <img onClick = {changeChatBg} src={default_bg} alt="" />
@@ -91,7 +82,6 @@ export default function MainPage() {
                     </div>
                 </li>
             </ul>
-
             <Outlet/>
         </div>
     )

@@ -1,19 +1,16 @@
 import './chats.css'
-
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import img from './../../assets/default-user-img.png'
-
 import { io } from 'socket.io-client';
-import { dataURLContext } from '../../context/Context';
+import { useSelector } from 'react-redux';
 
-export default function Chats(props) {
-    let socket = io.connect("http://localhost:3000" , { transports: ['websocket', 'polling', 'flashsocket'] })
-    let [chats , setChats] = useState([]) ; 
-    let [openDB , setOpenDB] = useState(true) ; // open dashboard
-
-    let context = useContext(dataURLContext) ; 
-
-    let list = [
+export default function Chats() {
+    // const socket = io.connect("http://localhost:3000" , 
+    //     { transports: ['websocket', 'polling', 'flashsocket'] }
+    // )
+    const [chats , setChats] = useState([]) ; 
+    const [openDB , setOpenDB] = useState(true) ; // open dashboard
+    const list = [
         {
             img : img , 
             name : "sara adel" , 
@@ -35,7 +32,6 @@ export default function Chats(props) {
             last_ms : "ofcurse noh!!"  , 
         }
     ]
-
     useEffect(() => {
         setChats([])
         for(let i of list) {
@@ -57,8 +53,7 @@ export default function Chats(props) {
 
     return (
         <div className="chats">
-
-            {/* start dashboard */}
+            {/*dashboard */}
             <div className="dashboard" style = {{width : openDB ? "260px" : "0px"}}>
                 <header>
                     <h6>Chats</h6>
@@ -69,42 +64,33 @@ export default function Chats(props) {
                         <input id="search" type="text" placeholder = "search of chats.."/>
                     </div>
                 </header>
-
                 <ul className="chats-list">
                     {chats}
                 </ul>
-
             </div>
-            {/* end dashboard */}
-
-            {/* start single-chat */}
-            <div style={{backgroundImage : `url(${context.value.chatBgImg})`}} className="chat">
-
+            {/* the chat */}
+            <div style={{backgroundImage : `url(${"context.value.chatBgImg"})`}} className="chat">
                 {/* to close the dashboard */}
                 <button 
                     onClick = {() => setOpenDB(!openDB)}
                     style = {{backgroundColor : openDB ? "#0566b9" : "#191919"}}>
                     <i className={`fa-solid fa-angles-${openDB ? "left" : "right"}`}></i>
                 </button>
-
                 <header>
                     <div className="right-side">
                         <img src={img} alt="" />
                         <div className="name">Habiba</div>
                     </div>
-                    
                     <div className="left-side">
                         <div className="video">
                             <i className="fa-solid fa-video"></i>
                         </div>
-
                         <div className="call">
                             <i className="fa-solid fa-phone"></i>
                         </div>
                     </div>
                 </header>
             </div>
-            {/* end single-chat */}
         </div>
     )
 }

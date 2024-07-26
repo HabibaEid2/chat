@@ -1,6 +1,6 @@
 import './register.css'
 
-import RegisterContent from './../registerContent/RegisterContent'
+import RegisterContent from '../registerContent/RegisterContent'
 import bg from './../../../assets/background.mp4'
 import register_v from './../../../assets/register-v.mp4'
 export default function Register(props) {
