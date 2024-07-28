@@ -2,7 +2,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 import './constant/css/bootstrap.min.css'
 import './constant/css/all.min.css'
 import './App.css'
-import Register from './pages/register/mainStyle/Register'
+import Register from './pages/register/mainRegisterPage/Register'
 import { Route, Routes } from 'react-router-dom'
 import Chats from './pages/chats/Chats'
 import MainBar from './components/main-bar/MainBar'
@@ -31,8 +31,8 @@ function App() {
         <Route element = {<Status/>} path='status'/>
         <Route element = {<Calls/>} path='calls'/>
       </Route>
-      <Route element = {<Login/>} path='/login'/>
-      <Route element = {<SignUp/>} path='/sing-up'/>
+      <Route element = {<Register type = "login"/>} path='/chat-app/login'/>
+      <Route element = {<Register type = "register"/>} path='/chat-app/register'/>
     </Routes>
     </>
 

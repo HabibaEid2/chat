@@ -1,4 +1,3 @@
-import './../registerContent/registerContent.css' ; 
 import axios from "axios"
 import { useState } from "react"
 import { Link } from "react-router-dom";
@@ -6,31 +5,34 @@ import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
 import Error from '../error/Error';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 export default function Login() {
     const [pass , setPass] = useState("") ; 
     const [email , setEmail] = useState("") ; 
-    const dispatch = useDispatch() ; 
-    const go = useNavigate() ; 
-    let [loading , setLoading] = useState(false) ; 
-    let [error , setError] = useState({left : "-115%" , type : ""}) ; 
+    const [loading , setLoading] = useState(false) ; 
+    const [error , setError] = useState({left : "-115%" , type : ""}) ; 
+    const navigate = useNavigate() ; 
 
     async function submit(e) {
         e.preventDefault() ; 
-        if (pass.length === 0)setError({left : "0" , type : "passError" }) ; 
+        if (pass.length === 0) setError({left : "0" , type : "passError" }) ; 
         else {
-            setLoading(true) ; 
-            await axios.post(`${api}/v1/login` , {
+            setLoading(true) ;
+            await axios({
+                method : "post" , 
+                url : `${api}/v1/login` , 
+                data : {
                     email : email , 
                     password : pass , 
-                }
-            )
-            .then(() => {
-                setLoading(false) ; 
-                go("main/chats")
+                } , 
+                withCredentials : true , 
+            })
+            .then((res) => {
+                setLoading(false) ;                
+                navigate("/chat-app/chats")
             })
             .catch(err => {
+                console.log
                 setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
                 setError({left : "0" , type : getErr}) ; 
@@ -70,9 +72,9 @@ export default function Login() {
                 <div className="check-account"> 
                     If you don't have account click here 
                     <span>
-                        <Link to="/register">Register</Link>
+                        <Link to="/chat-app/register">Register</Link>
                     </span>
-                </div> : 
+                </div> 
             </form>
         </div>
     )

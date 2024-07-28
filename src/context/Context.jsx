@@ -1,8 +1,8 @@
-import { Children, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
-const context = createContext() ; 
+export const context = createContext() ; 
 export default function Context({children}) {
-    const {value , setValue} = useState({open_editor_section : false})
+    const [value , setValue] = useState({open_img_editor : false})
     return <context.Provider value={{value , setValue}}>
         {children}
     </context.Provider>

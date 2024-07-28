@@ -2,7 +2,10 @@ import './chats.css'
 import { useEffect, useState } from "react"
 import img from './../../assets/default-user-img.png'
 import { io } from 'socket.io-client';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { api } from '../../api/Api';
+import { setUserData } from '../../redux/reducer';
 
 export default function Chats() {
     // const socket = io.connect("http://localhost:3000" , 
@@ -10,6 +13,7 @@ export default function Chats() {
     // )
     const [chats , setChats] = useState([]) ; 
     const [openDB , setOpenDB] = useState(true) ; // open dashboard
+    const dispatch = useDispatch() ; 
     const list = [
         {
             img : img , 

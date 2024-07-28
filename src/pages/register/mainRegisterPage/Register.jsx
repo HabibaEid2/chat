@@ -1,8 +1,8 @@
 import './register.css'
-
-import RegisterContent from '../registerContent/RegisterContent'
 import bg from './../../../assets/background.mp4'
 import register_v from './../../../assets/register-v.mp4'
+import Login from '../login/Login'
+import SignUp from '../signUp/SignUp'
 export default function Register(props) {
     return (
         <div className="register-whole-page">
@@ -17,7 +17,7 @@ export default function Register(props) {
                         your browser doesn't support video tag
                     </video>
                 </div>
-                <RegisterContent type = {props.type}/>
+                {props.type === "login" ? <Login/> : <SignUp/>}
             </div>
         </div>
     )

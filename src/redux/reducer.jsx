@@ -10,21 +10,19 @@ export const userData = createSlice({
             return state = action.payload ; 
         } , 
         updatePicture : (state , action) => {
-            return {...state , profile_pic : action.payload}
+            return {...state , profile_pic :action.payload } 
         }
     }
 })
 export const token = createSlice({
     name : "token" , 
-    initialState : cookie.get("token") , 
+    initialState : cookie.get("token") || "" , 
     reducers : {
         setToken : (state , action) => {
             return action.payload
-        } , 
-        getToken : (state) => {
-            return state ; 
-        }        
+        }      
     }
 })
 
-export const {setUserData , updatePicture} = userData.actions ; 
+export const {setUserData, updatePicture} = userData.actions ; 
+export const {setToken} = token.actions ; 

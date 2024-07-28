@@ -2,14 +2,14 @@
     background-color: #212121;
     width: 100vw;
     min-height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 }
 .crop-img > div {
     width: fit-content;
     position: relative;
-    margin: auto;
+    margin: 20px auto;
     left: 50%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);

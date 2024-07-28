@@ -1,6 +1,5 @@
-import './../registerContent/registerContent.css' ; 
 import axios from "axios"
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
@@ -8,21 +7,25 @@ import Error from '../error/Error';
 import defaultUserImg from './../../../assets/default-user-img.png'
 import CropImage from './../cropImage/CropImage'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/reducer';
+import { context } from "../../../context/Context";
 
 export default function SignUp(){
     const [userName , setUserName] = useState("") ; 
     const [pass , setPass] = useState("") ; 
     const [email , setEmail] = useState("") ; 
-    const [imgUrl , setImgUrl] = useState(defaultUserImg)
+    const [imgUrl , setImgUrl] = useState(defaultUserImg) ; 
+    const [loading , setLoading] = useState(false) ; 
+    const [error , setError] = useState({left : "-115%" , type : ""}) ;
+    const contextValue = useContext(context) ; 
     const userImg = useRef();
     const inputFile = useRef(); 
+    const editing_img = useSelector(state => state.userData).profile_pic ; 
     const dispatch = useDispatch() ; 
-    const go = useNavigate() ; 
-    let [loading , setLoading] = useState(false) ; 
-    let [error , setError] = useState({left : "-115%" , type : ""}) ; 
+    const navigate = useNavigate() ;  
 
+    // submit data to server
     async function submit(e) {
         e.preventDefault() ; 
         // check content 
@@ -37,27 +40,43 @@ export default function SignUp(){
                     name : userName , 
                     email : email , 
                     password : pass , 
-                    profile_pic : ""
+                    profile_pic : editing_img , 
                 } 
             )
-            .then(() => {
+            .then((res) => {
                 setLoading(false) ; 
-                go("main/chats")
+                dispatch(setUserData({
+                    name : res.data.data.name , 
+                    email : res.data.data.email  ,
+                    profile_pic : res.data.data.profile_pic
+                }))
+
+                // login here because backend doesn't give token unless login 
+                // we need token to get user details
+                axios.post(`${api}/v1/login`, {
+                        email : email , 
+                        password : pass , 
+                    } , 
+                    {withCredentials : true }
+                )
+                navigate("/chat-app/chats")
             })
             .catch(err => {
                 setLoading(false)
-                let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
+                const getErr = 
+                err.response.data.message.includes("E11000 duplicate key error collection: test.users") ?
+                "The user name is already found." :
+                err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;
                 setError({left : "0" , type : getErr}) ; 
             })
         }
     }
-
     // function to read the image url from the file that user open
     function readUrl() {
         let url = URL.createObjectURL(inputFile.current.files[0]) ; 
-        setImgUrl(url) ; 
+        setImgUrl(url)
+        contextValue.setValue({...contextValue.value , open_img_editor : true})
     }
-
     return (
         <div className="register-content">
             <div className='warning' style={{left : error.left}} onClick={() => setError({...error , left : "-115%"})}>
@@ -70,9 +89,11 @@ export default function SignUp(){
                         type="file" 
                         onChange={readUrl}
                         ref = {inputFile}
+                        accept="image/*"
+                        onClick={(e) => e.target.value = null}
                         />
                     <img 
-                        src={""} 
+                        src={editing_img || imgUrl} 
                         alt="user image" 
                         ref = {userImg}
                         onClick = {() => {
@@ -105,7 +126,6 @@ export default function SignUp(){
                     onChange={(e) => setPass(e.target.value)}
                     />
                 </div>
-
                 <button className = "submit" onClick={submit}><span>
                     {loading ? 
                     <Spinner animation="border" role="status">
@@ -116,11 +136,11 @@ export default function SignUp(){
                 <div className="check-account">
                     you have already an account ? click here 
                     <span>  
-                        <Link to="/login">Sign in</Link>
+                        <Link to="/chat-app/login">Sign in</Link>
                     </span>
                 </div>
             </form>
-            {/* {context.value.open_editor_section && <CropImage imgUrl = {imgUrl}/>} */}
+            {contextValue.value.open_img_editor && <CropImage imgUrl = {imgUrl}/>}
         </div>
     )
 }

@@ -1,6 +1,9 @@
-import {useRef, useState } from "react";
+import {useContext, useRef, useState } from "react";
 import ReactCrop from "react-image-crop";
 import './cropImage.css'
+import { context } from "../../../context/Context";
+import { useDispatch } from "react-redux";
+import { updatePicture } from "../../../redux/reducer";
 
 export default function CropImage({imgUrl}) {
     const [crop , setCrop] = useState({
@@ -12,6 +15,8 @@ export default function CropImage({imgUrl}) {
     }) ; 
     const canvas = useRef() ; 
     const img = useRef() ; 
+    const contextValue = useContext(context) ;
+    const dispatch = useDispatch() ; 
     // get the url of edited image 
     function getTheImgFromCanvas() {
         let scaleX = img.current.naturalWidth / img.current.width ; 
@@ -30,10 +35,11 @@ export default function CropImage({imgUrl}) {
             cHeight) ; 
 
         const dataUrl = canvas.current.toDataURL("image/jpeg", 1.0) ; 
+        dispatch(updatePicture(dataUrl))
     }
     // close editor sectoin
     function close() {
-        
+        contextValue.setValue({...context.value , open_img_editor : false})
     }
     return (
         <div className="crop-img">
