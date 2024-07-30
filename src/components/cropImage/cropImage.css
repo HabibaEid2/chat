@@ -18,7 +18,6 @@
     -o-transform: translateX(-50%);
 }
 .crop-img > div .ReactCrop__child-wrapper {
-    /* margin: 20px; */
     max-height: 76vh;
 }
 .crop-img img {
@@ -31,5 +30,17 @@
     -o-border-radius:0;
 }
 .crop-img button {
-    margin: 0 auto;
+    border-radius: 1px;
+    background-color: var(--main-color);
+    border: none;
+    color: #fff;
+    padding: 12.3px;
+    width: 76%;
+    margin: 8px auto;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: 0.5s;
+    overflow: hidden;
 }

@@ -86,7 +86,7 @@
     outline: none;
 }
 .register-content input:hover {
-    box-shadow: 3px 4px 0px 1px #ce9505;
+    box-shadow: 3px 4px 0px 1px var(--second-main-color);
 }
 .register-content .warning-img {
     width: 26px;
@@ -135,7 +135,7 @@
 }
 .register-content .check-account a {
     text-decoration: none;
-    color: #ce9505;
+    color: var(--second-main-color);
     font-weight: bold;
     cursor: pointer;
     margin-left: 10px;

@@ -1,6 +1,7 @@
 :root {
-    /* --main-color : #009688 ;  */
-    --main-color : #00569f ; 
+    --main-color : #00569f ;
+    --second-main-color : #ce9505 ; 
+    --special_font_family : "Itim", cursive ;  
 }
 * {
     margin: 0;

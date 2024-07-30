@@ -21,14 +21,56 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
 }
 .profile-section .modal-body > div {
     position: relative;
+    display: flex;
+    gap: 15px;
+}
+.profile-section .modal-body > div:not(.user-img):after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -9px;
+    width: 3px;
+    height: 100%;
+    background-color: var(--second-main-color);
+}
+.profile-section .modal-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: var(--special_font_family);
+    font-size: 20px;
+    color: var(--main-color) ;
+    font-weight: bold;
+}
+.profile-section .modal-title img {
+    width: 40px;
+}
+.profile-section .modal-body .title {
+    font-family: var(--special_font_family);
+    font-weight: bold;
+}
+.profile-section .modal-body .title + div {
+    width: 200px;
+}
+.profile-section .user-name input {
+    border: solid 2px var(--main-color);
+    border-radius: 6px;
+    padding: 1px 5px;
+    box-shadow: 2px 3px 0px var(--second-main-color);
+}
+.profile-section .user-name input:focus {
+    border-color: var(--main-color);
 }
 .profile-section .modal-body i {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    right: 7px;
+    bottom: 7px;
+    cursor: pointer;
 }
 .profile-section .user-img img{
     background-color: #e5e5e5;

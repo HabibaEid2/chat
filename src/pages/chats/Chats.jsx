@@ -2,10 +2,7 @@ import './chats.css'
 import { useEffect, useState } from "react"
 import img from './../../assets/default-user-img.png'
 import { io } from 'socket.io-client';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { api } from '../../api/Api';
-import { setUserData } from '../../redux/reducer';
+import { useDispatch } from 'react-redux';
 
 export default function Chats() {
     // const socket = io.connect("http://localhost:3000" , 

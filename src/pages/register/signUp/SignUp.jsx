@@ -5,7 +5,7 @@ import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
 import Error from '../error/Error';
 import defaultUserImg from './../../../assets/default-user-img.png'
-import CropImage from './../cropImage/CropImage'
+import CropImage from '../../../components/cropImage/CropImage'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../../redux/reducer';
@@ -74,6 +74,7 @@ export default function SignUp(){
     // function to read the image url from the file that user open
     function readUrl() {
         let url = URL.createObjectURL(inputFile.current.files[0]) ; 
+        console.log(url)
         setImgUrl(url)
         contextValue.setValue({...contextValue.value , open_img_editor : true})
     }

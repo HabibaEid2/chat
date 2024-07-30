@@ -1,9 +1,9 @@
 import {useContext, useRef, useState } from "react";
 import ReactCrop from "react-image-crop";
 import './cropImage.css'
-import { context } from "../../../context/Context";
+import { context } from "../../context/Context";
 import { useDispatch } from "react-redux";
-import { updatePicture } from "../../../redux/reducer";
+import { updatePicture } from "../../redux/reducer";
 
 export default function CropImage({imgUrl}) {
     const [crop , setCrop] = useState({

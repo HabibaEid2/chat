@@ -26,7 +26,7 @@ function App() {
         path= {cookie.get("token")?"/home" : "/login" }/>
       <Route />
       <Route element = {<Home/>} path='/chat-app'>
-        <Route element = {<Chats/>} path='/chat-app'/>
+        <Route element = {<Chats/>} path=''/>
         <Route element = {<Chats/>} path='chats'/>
         <Route element = {<Status/>} path='status'/>
         <Route element = {<Calls/>} path='calls'/>
