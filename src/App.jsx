@@ -13,24 +13,23 @@ import Home from './pages/home/Home'
 import { Cookies } from 'react-cookie'
 import Login from './pages/register/login/Login'
 import SignUp from './pages/register/signUp/SignUp'
+import { useSelector } from 'react-redux'
 
 function App() {
   // const socket = io("", { transport: ['websocket', 'polling', 'flashsocket'] });
-
-  const cookie = new Cookies() ; 
+  const token = useSelector(state => state.token) ; 
   return (
     <>
     <Routes>
-      <Route
-        element = {cookie.get("token")?<Home/>: <Login/> } 
-        path= {cookie.get("token")?"/home" : "/login" }/>
-      <Route />
-      <Route element = {<Home/>} path='/chat-app'>
-        <Route element = {<Chats/>} path=''/>
-        <Route element = {<Chats/>} path='chats'/>
-        <Route element = {<Status/>} path='status'/>
-        <Route element = {<Calls/>} path='calls'/>
-      </Route>
+      {token ? 
+        <Route element = {<Home/>} path='/chat-app'>
+          <Route element = {<Chats/>} path='*'/>
+          <Route element = {<Chats/>} path='chats'/>
+          <Route element = {<Status/>} path='status'/>
+          <Route element = {<Calls/>} path='calls'/>
+        </Route> : 
+        <Route element = {<Register type = "login"/>} path='/chat-app/*'/>
+      }
       <Route element = {<Register type = "login"/>} path='/chat-app/login'/>
       <Route element = {<Register type = "register"/>} path='/chat-app/register'/>
     </Routes>

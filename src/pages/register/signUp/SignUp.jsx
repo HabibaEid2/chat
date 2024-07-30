@@ -3,7 +3,7 @@ import { useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
-import Error from '../error/Error';
+import Error from '../../../components/error/Error';
 import defaultUserImg from './../../../assets/default-user-img.png'
 import CropImage from '../../../components/cropImage/CropImage'
 import { useNavigate } from 'react-router-dom';
@@ -64,8 +64,11 @@ export default function SignUp(){
             .catch(err => {
                 setLoading(false)
                 const getErr = 
-                err.response.data.message.includes("E11000 duplicate key error collection: test.users") ?
+                err.response.data.message
+                .includes("E11000 duplicate key error collection: test.users") ?
                 "The user name is already found." :
+                err.response?.status === 500 ?
+                'Check internet connection' : 
                 err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;
                 setError({left : "0" , type : getErr}) ; 
             })

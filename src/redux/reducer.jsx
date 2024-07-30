@@ -16,7 +16,7 @@ export const userData = createSlice({
 })
 export const token = createSlice({
     name : "token" , 
-    initialState : cookie.get("token") || "" , 
+    initialState : cookie.get("token"), 
     reducers : {
         setToken : (state , action) => {
             return action.payload

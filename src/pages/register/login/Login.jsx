@@ -3,14 +3,17 @@ import { useState } from "react"
 import { Link } from "react-router-dom";
 import {api} from "../../../api/Api";
 import { Spinner } from "react-bootstrap";
-import Error from '../error/Error';
+import Error from '../../../components/error/Error';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { setToken } from "../../../redux/reducer";
 
 export default function Login() {
     const [pass , setPass] = useState("") ; 
     const [email , setEmail] = useState("") ; 
     const [loading , setLoading] = useState(false) ; 
     const [error , setError] = useState({left : "-115%" , type : ""}) ; 
+    const dispatch = useDispatch() ; 
     const navigate = useNavigate() ; 
 
     async function submit(e) {
@@ -28,14 +31,19 @@ export default function Login() {
                 withCredentials : true , 
             })
             .then((res) => {
-                setLoading(false) ;                
+                setLoading(false) ;  
+                dispatch(setToken(res.data.token))
                 navigate("/chat-app/chats")
             })
             .catch(err => {
-                console.log
                 setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
-                setError({left : "0" , type : getErr}) ; 
+                setError({
+                    left : "0" , 
+                    type : err.response.status === 500 ?
+                    'Check internet connection' : 
+                    getErr
+                }) ; 
             })
         }
     }
@@ -65,7 +73,8 @@ export default function Login() {
                     {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
-                    </Spinner> :  "login"}
+                    </Spinner> :  "login"
+                    }
                     </span>
                 </button>
 

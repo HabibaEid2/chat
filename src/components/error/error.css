@@ -1,4 +1,4 @@
-.register .warning {
+.warning {
     position: absolute;
     top: 0;
     padding: 10px;
@@ -10,7 +10,7 @@
     -ms-transition: .5s;
     -o-transition: .5s;
 }
-.register .warning::after {
+.warning::after {
     content: "";
     position: absolute;
     right: 0;
@@ -18,4 +18,8 @@
     height: 100%;
     width: 3px;
     background-color: #dd636e;
+}
+.warning img {
+    background-color: transparent;
+    margin-right: 10px;
 }

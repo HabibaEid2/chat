@@ -10,6 +10,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
+}
+.profile-body {
+    animation: showProfile .4s;
+    -webkit-animation: showProfile .4s;
+}
+@keyframes showProfile {
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+}
 }
 .profile-section > div.modal {
     width: fit-content;
@@ -27,15 +48,12 @@
     position: relative;
     display: flex;
     gap: 15px;
+    width: 100%;
+    padding: 0 20px;
 }
-.profile-section .modal-body > div:not(.user-img):after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -9px;
-    width: 3px;
-    height: 100%;
-    background-color: var(--second-main-color);
+.profile-section .modal-body .user-img {
+    width: fit-content;
+    padding: 0;
 }
 .profile-section .modal-title {
     display: flex;
@@ -62,15 +80,17 @@
     border-radius: 6px;
     padding: 1px 5px;
     box-shadow: 2px 3px 0px var(--second-main-color);
+    width: 84%;
 }
 .profile-section .user-name input:focus {
     border-color: var(--main-color);
 }
 .profile-section .modal-body i {
     position: absolute;
-    right: 7px;
+    right: 0px;
     bottom: 7px;
     cursor: pointer;
+    color: #535353;
 }
 .profile-section .user-img img{
     background-color: #e5e5e5;
@@ -87,6 +107,16 @@
     font-size: 12px;
     border: solid 1px;
     cursor: pointer;
+}
+.profile-section .spinner-border {
+    width: 20px;
+    height: 20px;
+}
+.profile-section .modal-footer button:nth-child(1) {
+    border: solid 2px #686868;
+}
+.profile-section .modal-footer button:nth-child(2) {
+    background-color: var(--main-color);
 }
 @keyframes scale {
     from {
