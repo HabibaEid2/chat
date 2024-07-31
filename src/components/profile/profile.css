@@ -38,6 +38,9 @@
     animation: scale .4s;
     -webkit-animation: scale .4s;
 }
+.profile-section .modal-contect {
+    font-size: 20px;
+}
 .profile-section .modal-body {
     display: flex;
     flex-direction: column;
@@ -47,9 +50,18 @@
 .profile-section .modal-body > div {
     position: relative;
     display: flex;
+    flex-direction: row;
     gap: 15px;
     width: 100%;
     padding: 0 20px;
+}
+.profile-section .modal-body > div:not(.user-img)::after {
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+    position: absolute;
+    left: 0;
+    color: var(--second-main-color);
 }
 .profile-section .modal-body .user-img {
     width: fit-content;
@@ -61,12 +73,13 @@
     align-items: center;
     width: 100%;
     font-family: var(--special_font_family);
-    font-size: 20px;
+    font-size: 27px;
     color: var(--main-color) ;
     font-weight: bold;
 }
 .profile-section .modal-title img {
     width: 40px;
+    border: none;
 }
 .profile-section .modal-body .title {
     font-family: var(--special_font_family);
@@ -87,14 +100,14 @@
 }
 .profile-section .modal-body i {
     position: absolute;
-    right: 0px;
+    right: -5px;
     bottom: 7px;
     cursor: pointer;
     color: #535353;
 }
 .profile-section .user-img img{
     background-color: #e5e5e5;
-    width: 79px;
+    width: 108px;
     border: solid;
 }
 .profile-section .user-img i {
@@ -133,4 +146,12 @@
         -ms-transform: scale(1);
         -o-transform: scale(1);
 }
+}
+@media (max-width : 567px) {
+    .profile-section .modal-body > div{
+        flex-direction: column;
+    }
+    .profile-section .user-name input {
+        width: 100%;
+    }
 }

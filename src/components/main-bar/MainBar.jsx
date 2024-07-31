@@ -15,7 +15,7 @@ export default function MainBar() {
     return (
         <>
         <ul className='main-bar'>
-            <li title='profile' onClick={showProfileSection}>
+            <li title={`${userData.name}`} onClick={showProfileSection}>
                 <div className = "profile-tab">
                     <img src={userData.profile_pic || default_user_img} alt="profile" />
                 </div>
