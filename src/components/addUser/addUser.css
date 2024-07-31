@@ -1,0 +1,86 @@
+.add-user-section  {
+    background-color:rgb(71 69 69 / 40%);
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.add-user-section .add-user-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid;
+    padding: 20px 10px;
+    max-height: 90vh;
+    height: fit-content;
+    animation: showSearch .4s;
+    -webkit-animation: showSearch .4s;
+    position: relative;
+}
+.add-user-section .cancel-button {
+    position: absolute;
+    top: -13px;
+    right: -8px;
+    width: 27px;
+}
+.add-user-section .search-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border: solid 2px rgb(52, 52, 52);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    width: 417px;
+    position: relative;
+}
+.add-user-section input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.add-user-section input , .add-user-section h5{
+    color: #3f3f3f;
+    font-size: 16px;
+    font-weight: bold;
+}
+.add-user-section img {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.add-user-section .dividor {
+    width: 1px;
+    height: 100%;
+    background-color: #a5a5a5;
+    position: absolute;
+    right: 54px;
+    top: 0;
+}
+@keyframes showSearch {
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+}
+}

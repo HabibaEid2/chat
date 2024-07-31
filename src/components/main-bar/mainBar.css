@@ -4,7 +4,7 @@
     width: fit-content;
     height: 100vh;
     display: grid;
-    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto 1fr;
     justify-content: center;
     align-items: center;
     padding: 15px 0;
@@ -39,4 +39,8 @@
 }
 .main-bar span.md {
     height: 20px;
+}
+.main-bar .add-user {
+    align-self: flex-start;
+    justify-self: flex-start;
 }

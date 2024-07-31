@@ -1,0 +1,41 @@
+.existing-users {
+    margin-top: 20px;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+.existing-users .not-found-p {
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+    display: block;
+}
+.existing-users li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
+    cursor: pointer;
+}
+.existing-users li:hover {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #7697c633;
+    margin-right: 9px;
+}
+.existing-users img {
+    width: 50px;
+    background-color: #e5e5e56e;
+    border: solid 1px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin: 10px 0;
+}
