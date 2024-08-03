@@ -20,7 +20,8 @@ export default function Home() {
                 dispatch(setUserData({
                     name : res.data.data.name , 
                     email : res.data.data.email , 
-                    profile_pic : res.data.data.profile_pic
+                    profile_pic : res.data.data.profile_pic , 
+                    id : res.data.data._id , 
                 }))
             })
         }

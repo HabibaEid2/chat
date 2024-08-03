@@ -4,11 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { api } from '../../api/Api';
 import ExistingUsers from '../existingUsers/ExistingUsers';
-import cancel_button from './../../assets/x-button.png'
+import cancel_button from './../../assets/x-button.png' ; 
+
 export default function AddUser() {
-    const [existingUsers ,  setExistingUsers] = useState([]);
+
+    const [existingUsers , setExistingUsers] = useState([]);
     const [inputValue , setInputValue] = useState(null) ; 
     const bodyRef = useRef() ; 
+    
     useEffect(()=> {
         async function getUsers(){
             try {

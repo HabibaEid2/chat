@@ -77,7 +77,6 @@ export default function SignUp(){
     // function to read the image url from the file that user open
     function readUrl() {
         let url = URL.createObjectURL(inputFile.current.files[0]) ; 
-        console.log(url)
         setImgUrl(url)
         contextValue.setValue({...contextValue.value , open_img_editor : true})
     }

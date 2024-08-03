@@ -1,10 +1,17 @@
 import './chats.css'
 import { useEffect, useState } from "react"
 import img from './../../assets/default-user-img.png'
+import { io } from 'socket.io-client';
+import { useDispatch, useSelector } from 'react-redux';
+import { setOnlineUsers } from '../../redux/reducer';
+import { Outlet } from 'react-router-dom';
 
 export default function Chats() {
     const [chats , setChats] = useState([]) ; 
     const [openDB , setOpenDB] = useState(true) ; // open dashboard
+    const token = useSelector(state => state.token) ; 
+    const dispatch = useDispatch(); 
+
     const list = [
         {
             img : img , 
@@ -27,24 +34,36 @@ export default function Chats() {
             last_ms : "ofcurse noh!!"  , 
         }
     ]
+
+    // connect socket
     useEffect(() => {
-        setChats([])
-        for(let i of list) {
-            setChats(prev => {
-                return [...prev , 
-                    <li key={list.indexOf(i)}>
-                        <div className="img">
-                            <img src={i.img} alt="" />
-                        </div>
-                        <div className="txt">
-                            <div className="head">{i.name}</div>
-                            <div className="last-ms">{i.last_ms}</div>
-                        </div>
-                    </li>
-                ]
-            })
-        }
+        const socket = io.connect("http://localhost:3000" , {
+            auth : {
+                token : token , 
+            }
+        })
+        socket.on("onlineUser" , (res) => {
+            dispatch(setOnlineUsers(res)) ; 
+        })
     } , [])
+    // useEffect(() => {
+    //     setChats([])
+    //     for(let i of list) {
+    //         setChats(prev => {
+    //             return [...prev , 
+    //                 <li key={list.indexOf(i)}>
+    //                     <div className="img">
+    //                         <img src={i.img} alt="" />
+    //                     </div>
+    //                     <div className="txt">
+    //                         <div className="head">{i.name}</div>
+    //                         <div className="last-ms">{i.last_ms}</div>
+    //                     </div>
+    //                 </li>
+    //             ]
+    //         })
+    //     }
+    // } , [])
 
     return (
         <div className="chats">
@@ -71,20 +90,10 @@ export default function Chats() {
                     style = {{backgroundColor : openDB ? "#0566b9" : "#191919"}}>
                     <i className={`fa-solid fa-angles-${openDB ? "left" : "right"}`}></i>
                 </button>
-                <header>
-                    <div className="right-side">
-                        <img src={img} alt="" />
-                        <div className="name">Habiba</div>
-                    </div>
-                    <div className="left-side">
-                        <div className="video">
-                            <i className="fa-solid fa-video"></i>
-                        </div>
-                        <div className="call">
-                            <i className="fa-solid fa-phone"></i>
-                        </div>
-                    </div>
-                </header>
+
+                <div className="chat-content">
+                    <Outlet/>
+                </div>
             </div>
         </div>
     )

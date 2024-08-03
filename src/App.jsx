@@ -10,24 +10,19 @@ import Calls from './pages/calls/Calls'
 import { io } from 'socket.io-client'
 import Home from './pages/home/Home'
 import { useSelector } from 'react-redux'
+import SingleChat from './pages/singleChat/SingleChat'
 
 function App() {
   const token = useSelector(state => state.token) ; 
-  // connect socket
-  const socket = io.connect("http://localhost:3000" , {
-    auth : {
-      token : token , 
-    }
-  })
-
-  
   return (
     <>
     <Routes>
       {token ? 
         <Route element = {<Home/>} path='/chat-app'>
           <Route element = {<Chats/>} path='/chat-app'/>
-          <Route element = {<Chats/>} path='chats'/>
+          <Route element = {<Chats/>} path='chats'>
+            <Route element = {<SingleChat/>} path=':id'/>
+          </Route>
           <Route element = {<Status/>} path='status'/>
           <Route element = {<Calls/>} path='calls'/>
         </Route> : 
