@@ -1,4 +1,73 @@
-.singleChat .send-icon img {
+.single-chat {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.single-chat header {
+    position: absolute;
+    z-index: 1;
+    width: 99%;
+    top: 0;
+}
+.single-chat .messages {
+    display: grid;
+    overflow-y: auto;
+    padding: 59px 15px 6px;
+    background-color: #1d1d1d;
+}
+.single-chat .messages .message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3d6d96;
+    margin: 3px 0;
+    padding: 5px 8px;
+    color: white;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    gap: 14px;
+    border-radius: 22px;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    -ms-border-radius: 22px;
+    -o-border-radius: 22px;
+}
+.single-chat .messages .friend-ms {
+    justify-self: flex-end;
+}
+.single-chat .message .sub-data {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.single-chat .message .sub-data i {
+    color: var(--second-main-color);
+}
+.single-chat footer {
+    background-color: #333333;
+}
+.single-chat footer .send-ms {
+    background-color: white;
+    margin: 15px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 3px 24px;
+    border-radius: 30px;
+}
+.single-chat footer input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.single-chat footer img {
     background-color: transparent;
     border: none;
+    width: 27px;
+    cursor: pointer;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
 }

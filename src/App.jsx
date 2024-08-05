@@ -7,13 +7,19 @@ import { Route, Routes } from 'react-router-dom'
 import Chats from './pages/chats/Chats'
 import Status from './pages/status/Status'
 import Calls from './pages/calls/Calls'
-import { io } from 'socket.io-client'
 import Home from './pages/home/Home'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SingleChat from './pages/singleChat/SingleChat'
+import { getSocket } from './redux/reducer'
+import { useEffect } from 'react'
 
 function App() {
   const token = useSelector(state => state.token) ; 
+  const dispatch = useDispatch() ; 
+
+  // useEffect(() => {
+  //   dispatch(getSocket()) ; 
+  // } ,[])
   return (
     <>
     <Routes>

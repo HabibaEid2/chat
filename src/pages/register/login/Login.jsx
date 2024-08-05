@@ -31,11 +31,13 @@ export default function Login() {
                 withCredentials : true , 
             })
             .then((res) => {
+                console.log(res)
                 setLoading(false) ;  
                 dispatch(setToken(res.data.token))
                 navigate("/chat-app/chats")
             })
             .catch(err => {
+                console.log(err)
                 setLoading(false)
                 let getErr = err.response.data.message.slice(0 , err.response.data.message.indexOf("(")) ;  
                 setError({

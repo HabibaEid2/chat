@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { chosenUser, onlineUsers, token, userData } from "./reducer";
+import { chosenUser, connectSocket, onlineUsers, token, userData } from "./reducer";
 
 export const store = configureStore({
     reducer : {
@@ -7,5 +7,6 @@ export const store = configureStore({
         token : token.reducer , 
         onlineUsers : onlineUsers.reducer ,
         chosenUser : chosenUser.reducer , 
+        connectSocket : connectSocket.reducer , 
     }
 }) ; 

@@ -44,3 +44,15 @@
     align-self: flex-start;
     justify-self: flex-start;
 }
+.main-bar .logout-img {
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+.main-bar .logout-img img {
+    border-radius: 4px;
+    background-color: white;
+    border: none;
+    width: 35px;
+    padding: 5px;
+}

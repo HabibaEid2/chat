@@ -8,7 +8,7 @@ import defaultUserImg from './../../../assets/default-user-img.png'
 import CropImage from '../../../components/cropImage/CropImage'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserData } from '../../../redux/reducer';
+import { setToken, setUserData } from '../../../redux/reducer';
 import { context } from "../../../context/Context";
 
 export default function SignUp(){
@@ -59,6 +59,9 @@ export default function SignUp(){
                     } , 
                     {withCredentials : true }
                 )
+                .then(res =>{
+                    dispatch(setToken(res.data.token))
+                })
                 navigate("/chat-app/chats")
             })
             .catch(err => {
